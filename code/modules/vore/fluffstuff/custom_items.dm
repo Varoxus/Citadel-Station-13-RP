@@ -1468,12 +1468,14 @@
 	var/atom/real_loc = destination.loc
 	if(isbelly(real_loc))
 		real_dest = real_loc
-	if(isliving(real_loc))
+	else if(isliving(real_loc))
 		var/mob/living/L = real_loc
 		if(L.vore_selected)
 			real_dest = L.vore_selected
 		else if(L.vore_organs.len)
 			real_dest = pick(L.vore_organs)
+	else
+		real_dest = real_loc
 
 	//Confirm televore
 	var/televored = FALSE
